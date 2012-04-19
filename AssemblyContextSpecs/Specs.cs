@@ -35,10 +35,12 @@ namespace AssemblyContextSpecs
 
   public class DomainEventsContext : IAssemblyContext
   {
-    internal static IList<IDomainEvent> Events = new List<IDomainEvent>();
+    internal static IList<IDomainEvent> Events;
 
     public void OnAssemblyStart()
     {
+      Events = new List<IDomainEvent>();
+
       DomainEvents.RegisterEventPublisher(x => Events.Add(x));
     }
 
@@ -47,11 +49,63 @@ namespace AssemblyContextSpecs
     }
   }
 
-  public class When_a_domain_event_is_raised
+  public class When_a_domain_event_is_raised_1
   {
     Because of = () => DomainEvents.Raise(new FooEvent());
 
     It should_capture_the_event =
       () => DomainEventsContext.Events.ShouldContain(x => x.GetType() == typeof(FooEvent));
+
+    It should_have_at_least_one_event =
+      () =>
+      {
+        Console.WriteLine("\r\n# of captured events: " + DomainEventsContext.Events.Count);
+        DomainEventsContext.Events.Count.ShouldBeGreaterThan(0);
+      };
+  }
+
+  public class When_a_domain_event_is_raised_2
+  {
+    Because of = () => DomainEvents.Raise(new FooEvent());
+
+    It should_capture_the_event =
+      () => DomainEventsContext.Events.ShouldContain(x => x.GetType() == typeof(FooEvent));
+
+    It should_have_at_least_one_event =
+      () =>
+      {
+        Console.WriteLine("\r\n# of captured events: " + DomainEventsContext.Events.Count);
+        DomainEventsContext.Events.Count.ShouldBeGreaterThan(0);
+      };
+  }
+
+  public class When_a_domain_event_is_raised_3
+  {
+    Because of = () => DomainEvents.Raise(new FooEvent());
+
+    It should_capture_the_event =
+      () => DomainEventsContext.Events.ShouldContain(x => x.GetType() == typeof(FooEvent));
+
+    It should_have_at_least_one_event =
+      () =>
+      {
+        Console.WriteLine("\r\n# of captured events: " + DomainEventsContext.Events.Count);
+        DomainEventsContext.Events.Count.ShouldBeGreaterThan(0);
+      };
+  }
+
+  public class When_a_domain_event_is_raised_4
+  {
+    Because of = () => DomainEvents.Raise(new FooEvent());
+
+    It should_capture_the_event =
+      () => DomainEventsContext.Events.ShouldContain(x => x.GetType() == typeof(FooEvent));
+
+    It should_have_at_least_one_event =
+      () =>
+      {
+        Console.WriteLine("\r\n# of captured events: " + DomainEventsContext.Events.Count);
+        DomainEventsContext.Events.Count.ShouldBeGreaterThan(0);
+      };
   }
 }
