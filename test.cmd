@@ -1,0 +1,1 @@
+packages\Machine.Specifications.0.5.6.0\tools\mspec-clr4.exe AssemblyContextSpecs\bin\Debug\AssemblyContextSpecs.dll
